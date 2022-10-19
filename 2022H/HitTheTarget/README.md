@@ -77,13 +77,17 @@ def make_prediction(self) -> None:
 Så da er vi kommet til sakens kjerne, vi skal hovedsaklig se på en alpha-beta-gamma filter som er det jeg endte med å bruke i denne oppgaven. Et slikt filter består av alle elementene fra filterene over som bruker kun alpha og beta, og legger til en ligning med gammaverdi for akselerasjon. Settet  med ligninger som er brukt i min oppgave er som følger:
 
 #### State Update Equations (oppdatering)
+
 $$x_{1}=x_{0}+\alpha(measurement−x_{0})$$
 $$velocity_{1}=velocity_{0}+\beta({measurement−x_{0}\over \triangle t})$$
 $$acceleration_{1}=acceleration_{0}+ \gamma ({measurement-x_{0}\over0,5\triangle t^2})$$
+
 #### State Extrapolation Equations (finne neste beregning)
+
 $$x_{0}=x_{1,1}+velocity_{1}\triangle t^2+acceleration_{1}{\triangle t^2 \over 2}$$
 $$velocity_{0}=velocity_{1}+acceleration_{1}\triangle t^2$$
 $$acceleration_{0}=acceleration_{1}$$
+
 ***State Update Equation*** (SUE) vil i første iterasjon beregne nåværende beste aproksimasjon for posisjon, fart og akselerasjon basert på initial-betingelser satt av programmerer. Dette kan enten være en kalkulert eller ukalkulert gjetning, eller en kalkulasjon basert på f.eks to første målinger (dersom man har disse, slik som i øvingsoppgave-kalman). I neste iterasjon vil startbetingelsene i SUE være beregnet av de neste tre ligningene, ***State Extrapolate Equations*** (SEE). Disse formlene vil gi en prediksjon på neste startverdi ($x_0$) som SUE bruker i de neste beregningene med neste måling.
 
 Her kan vi også legge merke til, for alle parametere (posisjon, fart og akselerasjon) så vil den nye verdien som legges til/trekkes fra (kommer ann på om verdiene blir positive eller negative) predikeres med enten alpha, beta eller gamma. I motsetning til filterene fra øvingsoppgave-kalman, så settes verdiene nå konstante, slik at hver ny måling vil vektes like mye som den forrige. Nøyaktig hvorfor er jeg usikker på, og det har vært vanskelig å finne noe svar på dette. Ifølge de retningslinjene jeg har funnet så skal alpha settes en plass mellom 0 - 1, beta en hundredel av alpha, og gamma en hundredel av beta. Her var det mye prøving og feiling med verdier, godt hjulpet av Notebooken *test_filter_visualize_results*.  Her endte jeg med å skrive en funksjon som hjalp meg å fintune verdiene, denne testen endte opp med å ta i overkant av 20 timer å kjøre. Jeg legger ved deler av testresultatet lenger ned.
