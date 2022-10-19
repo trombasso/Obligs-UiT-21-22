@@ -1,7 +1,5 @@
 # Introduksjon
 
-<hr>
-
 I oblig 1 var oppgaven å lage et filter for å beregne posisjonen til et objekt hvor posisjonen obfskuseres av støy. Filteret skulle være av typen kalmanfilter eller alpha-beta-gamma filter, og det ble lagt vekt på i oppgaven at bruken av kalman-filter ville regnes som "noe ekstra" da et alpha-beta-gamma eller alpha-beta ville være tilstrekkelig. 
 
 Kalman-filter vil kunne oppnå høyere grad av nøyaktighet, men er mer komplekst å forstå og skrive, så jeg har valgt alpha-beta-gamma varianten til denne oppgaven. Jeg har oppnådd tilnærmet 90% prosent nøyaktighet med dette filteret etter mye prøving og feiling. Det viste seg at den største utfordringen var å finne de riktige verdiene for alpha/beta/gamma, så her endte jeg med å skrive en egen test for dette. Mer om det senere.
@@ -11,8 +9,6 @@ Kalman-filter vil kunne oppnå høyere grad av nøyaktighet, men er mer kompleks
 
 
 # Teorien og utvikling
-
-<hr>
 
 Nettsida <http://www.kalmanfilter.net> har vært til stor hjelp i denne oppgaven, og formlene over er hentet derfra. Jeg har ikke funnet andre kilder som gir en bedre forklaring på bakgrunn eller funksjon, og de mange eksemplene gjør det enkelt å se hvordan man selv kan implementere filteret i andre sammenhenger. Det ville vært langt vanskeligere uten denne ressursen.
 
@@ -79,13 +75,17 @@ Så da er vi kommet til sakens kjerne, vi skal hovedsaklig se på en alpha-beta-
 #### State Update Equations (oppdatering)
 
 $$x_{1}=x_{0}+\alpha(measurement−x_{0})$$
+
 $$velocity_{1}=velocity_{0}+\beta({measurement−x_{0}\over \triangle t})$$
+
 $$acceleration_{1}=acceleration_{0}+ \gamma ({measurement-x_{0}\over0,5\triangle t^2})$$
 
 #### State Extrapolation Equations (finne neste beregning)
 
 $$x_{0}=x_{1,1}+velocity_{1}\triangle t^2+acceleration_{1}{\triangle t^2 \over 2}$$
+
 $$velocity_{0}=velocity_{1}+acceleration_{1}\triangle t^2$$
+
 $$acceleration_{0}=acceleration_{1}$$
 
 ***State Update Equation*** (SUE) vil i første iterasjon beregne nåværende beste aproksimasjon for posisjon, fart og akselerasjon basert på initial-betingelser satt av programmerer. Dette kan enten være en kalkulert eller ukalkulert gjetning, eller en kalkulasjon basert på f.eks to første målinger (dersom man har disse, slik som i øvingsoppgave-kalman). I neste iterasjon vil startbetingelsene i SUE være beregnet av de neste tre ligningene, ***State Extrapolate Equations*** (SEE). Disse formlene vil gi en prediksjon på neste startverdi ($x_0$) som SUE bruker i de neste beregningene med neste måling.
@@ -94,7 +94,6 @@ Her kan vi også legge merke til, for alle parametere (posisjon, fart og akseler
 
 # Koden
 
-<hr>
 
 ```python
 class Kalman:
@@ -136,16 +135,12 @@ Dette er mitt $\alpha - \beta - \gamma$ filter. Initialverdiene er satt til det 
 
 # Problemer med pygame
 
-<hr>
-
 For å kunne kjøre koden og få et tilstrekkelig godt resultat var det nødvendig med svært mange iterasjoner. Her støtte jeg på et problem. Som du kan se i denne videoen (https://youtu.be/sm0rf7k7VT8) så går simulasjonen svært sakte. Det viste seg å være et problem med mac og pygame generelt, og jeg fant ingen fiks for dette problemet. Løsningen for meg var å fjerne den grafiske delen fra filen *HitTheTarget.py* og kjøre testing kun gjennom terminal. Denne filen er vedlagt og heter *myHitTheTarget.py*.
 
 ***!! Det er ingen problem å kjøre filen Kalman.py ned originalfilene som ble levert med oppgaven !!***
 
 
 # Testing og resultater
-
-<hr>
 
 Alle tester er kjørt med myHitTheTarget.py slik at jeg fikk er skikkelig sammenligningsgrunnlag. 
 
