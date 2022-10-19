@@ -16,7 +16,7 @@ I oblig 1 var oppgaven å lage et filter for å beregne posisjonen til et objekt
 Et Kalman-filter med bruk av matriser i utregninger er en kompleks oppgave som jeg kjapt innså at jeg ville ha problemer med å forklare, og forstå, så jeg har valgt alpha-beta-gamma varianten til denne oppgaven. Jeg har oppnådd i overkant av  90% prosent nøyaktighet med dette filteret etter mye prøving og feiling. Det viste seg at den største utfordringen var å finne de riktige verdiene for alpha/beta/gamma, så her endte jeg med å skrive en egen test for dette. Mer om det tilslutt.
 
 
-![[HitTheTarget.png]]
+![HitTheTarget.png](https://github.com/trombasso/Obligs-UiT-21-22/blob/main/2022H/HitTheTarget/HitTheTarget.png?raw=true)
 `Bildet viser programmet som skulle brukes i denne oppgaven. Det viser seg at pygame fungerer dårlig på Mac, så her har jeg vært nødt til å bruke en forandret utgave for testing slik at jeg fikk kjørt tilstrekkelig antall iterasjoner for å kunne måle med god nok nøyaktighet.`
 
 
