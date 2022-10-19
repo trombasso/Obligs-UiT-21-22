@@ -207,7 +207,7 @@ Time for trial: 0:02:51 
 `Utskrift fra en testkjøring med 40.000 iterasjoner fra myHitTheTarget.py`
 
 
-Testen med HitTheTarget.py og pygame ser slik ut. Her ser vi noenlunde samme resultater men testen tar lang tid. Disse 100 iterasjonene tok like lang tid som de 40000 i testen over. Denne testen er gjort før forandringer på hastighet og akselerasjon.
+Testen med HitTheTarget.py og pygame ser slik ut. Her ser vi noenlunde samme resultater men testen tar lang tid. Disse 100 iterasjonene tok like lang tid som de 40000 i testen over...
 ```zsh
 Hit rate after 100 iterations:
 Without filter: 10.0 %
