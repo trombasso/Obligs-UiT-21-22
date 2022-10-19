@@ -79,13 +79,17 @@ Så da er vi kommet til sakens kjerne, vi skal hovedsaklig se på en alpha-beta-
 #### State Update Equations (oppdatering)
 
 $$x_{1}=x_{0}+\alpha(measurement−x_{0})$$
+
 $$velocity_{1}=velocity_{0}+\beta({measurement−x_{0}\over \triangle t})$$
+
 $$acceleration_{1}=acceleration_{0}+ \gamma ({measurement-x_{0}\over0,5\triangle t^2})$$
 
 #### State Extrapolation Equations (finne neste beregning)
 
 $$x_{0}=x_{1,1}+velocity_{1}\triangle t^2+acceleration_{1}{\triangle t^2 \over 2}$$
+
 $$velocity_{0}=velocity_{1}+acceleration_{1}\triangle t^2$$
+
 $$acceleration_{0}=acceleration_{1}$$
 
 ***State Update Equation*** (SUE) vil i første iterasjon beregne nåværende beste aproksimasjon for posisjon, fart og akselerasjon basert på initial-betingelser satt av programmerer. Dette kan enten være en kalkulert eller ukalkulert gjetning, eller en kalkulasjon basert på f.eks to første målinger (dersom man har disse, slik som i øvingsoppgave-kalman). I neste iterasjon vil startbetingelsene i SUE være beregnet av de neste tre ligningene, ***State Extrapolate Equations*** (SEE). Disse formlene vil gi en prediksjon på neste startverdi ($x_0$) som SUE bruker i de neste beregningene med neste måling.
