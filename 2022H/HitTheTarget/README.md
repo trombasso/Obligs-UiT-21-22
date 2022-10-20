@@ -1,8 +1,3 @@
-!! NB !!
-Dette dokumentet ligger også på github, se gjerne der for å se alle filer listet under.
-https://github.com/trombasso/Obligs-UiT-21-22/tree/main/2022H/HitTheTarget
-
-
 ```python
 Filoversikt:
 -----------------------------------------------------------------------------------------------------------
