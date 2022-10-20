@@ -1,3 +1,8 @@
+!! NB !!
+Dette dokumentet ligger også på github, se gjerne der for å se alle filer listet under.
+https://github.com/trombasso/Obligs-UiT-21-22/tree/main/2022H/HitTheTarget
+
+
 ```python
 Filoversikt:
 -----------------------------------------------------------------------------------------------------------
@@ -13,7 +18,7 @@ output.txt                | Resultat av test for beste a/b/g verdi
 
 I oblig 1 var oppgaven å lage et filter for å beregne posisjonen til et objekt hvor posisjonen obfskuseres av støy. Filteret skulle være av typen kalmanfilter eller alpha-beta-gamma filter. 
 
-Et Kalman-filter med bruk av matriser i utregninger er en kompleks oppgave som jeg kjapt innså at jeg ville ha problemer med å forklare, og forstå, så jeg har valgt alpha-beta-gamma varianten til denne oppgaven. Jeg har oppnådd i overkant av  90% prosent nøyaktighet med dette filteret etter mye prøving og feiling. Det viste seg at den største utfordringen var å finne de riktige verdiene for alpha/beta/gamma, så her endte jeg med å skrive en egen test for dette. Mer om det tilslutt.
+Et Kalman-filter med bruk av matriser i utregninger er en kompleks oppgave som jeg kjapt innså at jeg ville ha problemer med å forklare, og forstå, så jeg har valgt alpha-beta-gamma varianten til denne oppgaven. Jeg har oppnådd i overkant av  90% prosent nøyaktighet med dette filteret etter mye prøving og feiling. Det viste seg at den største utfordringen var å finne de riktige verdiene for alpha/beta/gamma, så her endte jeg med å skrive en egen test for dette. Mer om det tilslutt. Det er også verdt å nevne at med en en liten forandring i koden til HitTheTarget.py så er det mulig å oppnå nesten 100% hitrate, det kan du også lese lenger ned.
 
 
 ![HitTheTarget.png](https://github.com/trombasso/Obligs-UiT-21-22/blob/main/2022H/HitTheTarget/HitTheTarget.png?raw=true)
@@ -223,6 +228,53 @@ Without filter: 9.7 %
 With filter:    90.4 %
 ```
 `Utskrift fra en testkjøring med HitTheTarget.py. Denne kjøringen tok ca like lang tid som den over.`
+
+
+# Tilslutt, kanskje en liten feil i HitTheTarget.py ??? 
+
+Tilslutt har jeg lyst til å ta med noen som jeg mener er en feil i koden HitTheTarget.py. I "Main game loop" finner du denne koden:
+```python
+# Check if missile(s) hit
+coll = missile.rect.colliderect(target.rect)
+if coll:
+	reg_score += 1
+  
+if kalman_implemented:
+	k_coll = k_miss.rect.colliderect(target.rect) # kommenter inn denne linjen naar Kalman er implementert
+	if k_coll:
+		kalman_score += 1
+
+# End trial if missile(s) hit, or missile is sufficiently high up
+oob = missile.rect.y < 20
+	if oob or coll or (kalman_implemented and k_coll):
+	trial = False
+```
+
+Dersom den coll (originale prosjektilet) treffer målet én pixel før vår eget kalmanstyrte prosjektil treffer så vil gameloopen avbrytes og kun coll vil få uttelling for treffet. Det er uheldig, for det vil gi et feil bilde av hvor nøyaktig det implementerte kalmanfilteret vil kunne treffe. 
+
+Dersom jeg gjør folgende forandring på linje 227:
+
+```python 
+oob = missile.rect.y < 20
+	if oob or (kalman_implemented and k_coll):
+	trial = False
+```
+
+Så vil resultat forbedres kraftig:
+
+```zsh
+1 | Running iterations..............................................................................
+Hit rate after 1000 iterations:
+Without filter: 0.0 %
+With filter:    99.8 %
+Initial values: Position 0 Velocity 0.007 Acceleration 0.01
+Kalman Gaines: Alpha 0.02 Beta 8.15e-5 Gamma 2.8e-07
+Time for trial: 0:00:04 
+----------------------------------------------------------------------------------------------------
+```
+
+Dette vil i min mening være en mer korrekt måling på treffsikkerheten til filteret.
+
 
 
 # Finjustering av $\alpha -\beta -\gamma$, egentest.
