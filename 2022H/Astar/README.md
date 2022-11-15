@@ -4,6 +4,7 @@
 I denne innleveringen er vi blitt bedt om å skrive en implementasjon av A*, en søkealgoritme som er godt egnet for å finne korteste vei fra punkt A til B. Tidligere har vi jobbet med Dijkstra, og oppgaven som vi har fått utlevert er allerede implementert med denne algoritmen. Jeg skal først fortelle litt om forskjelligen på de to algoritmene, pluss en variant som heter Gready Best First, senere gå igjennom koden som jeg har skrevet for A*.
 
 [![Video](https://img.youtube.com/vi/F_0u5ygxx4I/0.jpg)](https://www.youtube.com/watch?v=F_0u5ygxx4I)
+
 https://www.youtube.com/watch?v=F_0u5ygxx4I
 
 Video som viser hvordan dette scriptet kjøres. Denne kan gjerne kjøres i dobbelt tempo. Mac og Pygame spiller ikke veldig godt på lag, og det gjør at programmet kjører ulidelig sakte.
@@ -29,7 +30,7 @@ Køen fungerer slik at noden som til enhver til skal undersøkes plukkes fra den
 
 Denne forskjellen på hvordan køen vektlegges gir utslag på hvordan søket til syvende og sist ser ut. Alle tre *kan* gi raskeste vei, men det er ikke alltid slik. Her er eksempler på alle de tre forskjellige algoritmene i rekkefølge, Dijkstra, Gready og A*. Her er det relativt enkelt å se at A* er en kombinasjon av de to første. 
 
-![[Bilder/dijkstra.png|200]]       ![[Bilder/greadybest.png|200]]      ![[Bilder/astar.png|200]]
+<img src="Bilder/dijkstra.png"  width=200>      ![[Bilder/greadybest.png|200]]      ![[Bilder/astar.png|200]]
 
 Selv om det kan se ut som alle vil gi det samme resultatet så kommer det ann på hvordan topografien i et søk ser ut. På bildet under til venstre kan du se at Gready Best *ikke* gir korteste vei. Topografien er altså utformet slik at søket ender med å hoppe over de nodene som er nødvendige for å finne den korteste ruta. Til høyre ser du samme topografi men med A*.
 
