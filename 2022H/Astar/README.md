@@ -30,7 +30,7 @@ Køen fungerer slik at noden som til enhver til skal undersøkes plukkes fra den
 
 Denne forskjellen på hvordan køen vektlegges gir utslag på hvordan søket til syvende og sist ser ut. Alle tre *kan* gi raskeste vei, men det er ikke alltid slik. Her er eksempler på alle de tre forskjellige algoritmene i rekkefølge, Dijkstra, Gready og A*. Her er det relativt enkelt å se at A* er en kombinasjon av de to første. 
 
-![Dijkstra|200](Bilder/dijkstra.png)      ![GreadyBest|200](Bilder/greadybest.png)      ![A*|200](Bilder/astar.png)
+![Dijkstra|200](Bilder/dijkstra.png {width=200px})      ![GreadyBest|200](Bilder/greadybest.png)      ![A*|200](Bilder/astar.png)
 
 Selv om det kan se ut som alle vil gi det samme resultatet så kommer det ann på hvordan topografien i et søk ser ut. På bildet under til venstre kan du se at Gready Best *ikke* gir korteste vei. Topografien er altså utformet slik at søket ender med å hoppe over de nodene som er nødvendige for å finne den korteste ruta. Til høyre ser du samme topografi men med A*.
 
