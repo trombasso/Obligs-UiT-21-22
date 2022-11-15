@@ -30,11 +30,11 @@ Køen fungerer slik at noden som til enhver til skal undersøkes plukkes fra den
 
 Denne forskjellen på hvordan køen vektlegges gir utslag på hvordan søket til syvende og sist ser ut. Alle tre *kan* gi raskeste vei, men det er ikke alltid slik. Her er eksempler på alle de tre forskjellige algoritmene i rekkefølge, Dijkstra, Gready og A*. Her er det relativt enkelt å se at A* er en kombinasjon av de to første. 
 
-<img src="Bilder/dijkstra.png"  width=200>      ![Gready Best First](Bilder/greadybest.png | width=200)      ![[Bilder/astar.png|200]]
+![Dijkstra|200](Bilder/dijkstra.png)      ![GreadyBest|200](Bilder/greadybest.png)      ![A*|200](Bilder/astar.png)
 
 Selv om det kan se ut som alle vil gi det samme resultatet så kommer det ann på hvordan topografien i et søk ser ut. På bildet under til venstre kan du se at Gready Best *ikke* gir korteste vei. Topografien er altså utformet slik at søket ender med å hoppe over de nodene som er nødvendige for å finne den korteste ruta. Til høyre ser du samme topografi men med A*.
 
-![[Bilder/greadybestgonewrong.png|250]]      ![[Bilder/astarsavestheday.png|250]]
+![GreadyBestGoneWrong|250](Bilder/greadybestgonewrong.png)      ![AstarSavesTheDay|250](Bilder/astarsavestheday.png)
 
 Så hvilken av disse algoritmene som er best avhenger av situasjon og behov. Dijkstra vil alltid velge kjappeste vei, men er ressurskrevende pga. antall noder som besøkes. Gready Best vil i bestemte tilfeller finne målet raskest, men ruta vil ikke nødvendigvis være kortest. Astar er et kompromi hva hastighet/ressurs angår, men vil finne beste vei på lik linje med Dijkstra.
 
